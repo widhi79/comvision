@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aplikasi Pendeteksi Emosi</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .center-container {
+            text-align: center;
+        }
+        .uploaded-image {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-container">
+        <h1>Deteksi Emosi</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image">
+            <button type="submit">Load File</button>
+        </form>
+        <br>        
+        {% if emotion %}
+            <h2>Hasil Deteksi: {{ emotion }}</h2>
+        {% endif %}
+        {% if uploaded_image %}           
+            <img src="{{ uploaded_image }}" alt="Uploaded Image">
+        {% endif %}
+    </div>
+</body>
+</html>
